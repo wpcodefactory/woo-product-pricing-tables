@@ -30,28 +30,28 @@ class reqPtw {
         switch($from) {
             case 'get':
                 if(isset($_GET[$name]))
-                    return $_GET[$name];
+                    return sanitize_text_field($_GET[$name]);
             break;
             case 'post':
                 if(isset($_POST[$name]))
-                    return $_POST[$name];
+                    return sanitize_text_field($_POST[$name]);
             break;
             case 'file':
             case 'files':
                 if(isset($_FILES[$name]))
-                    return $_FILES[$name];
+                    return sanitize_text_field($_FILES[$name]);
                 break;
             case 'session':
                 if(isset($_SESSION[$name]))
-                    return $_SESSION[$name];
+                    return sanitize_text_field($_SESSION[$name]);
 				break;
             case 'server':
                 if(isset($_SERVER[$name]))
-                    return $_SERVER[$name];
+                    return sanitize_text_field($_SERVER[$name]);
 				break;
 			case 'cookie':
 				if(isset($_COOKIE[$name])) {
-					$value = $_COOKIE[$name];
+					$value = sanitize_text_field($_COOKIE[$name]);
 					if(strpos($value, '_JSON:') === 0) {
 						$value = utilsPtw::jsonDecode($value, array_pop(explode('_JSON:', $value)));
 					}
@@ -115,7 +115,7 @@ class reqPtw {
         switch($what) {
             case 'get':
                 return $_GET;
-                break;
+                break; 
             case 'post':
                 return $_POST;
                 break;

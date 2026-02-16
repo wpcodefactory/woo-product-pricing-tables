@@ -36,13 +36,18 @@ class tablesModelPtw extends modelPtw {
 		$original = $this->_escTplData( $original );
 		return $this->insert( $original );
 	}
-	public function remove($id) {
-		$id = (int) $id;
-		if($id) {
-			if(framePtw::_()->getTable( $this->_tbl )->delete(array('id' => $id))) {
+	public function remove($id)
+	{
+		if (! check_ajax_referer( 'ptw-delete-nonce', 'ptwDeleteNonce', false ) || ! framePtw::_()->getModule( 'adminmenu' )->getMainCap()) {
+				$this->pushError( __( 'Invalid request.', PTW_LANG_CODE ) );
+				return false;
+		}
+		$id = (int) esc_html(reqPtw::getVar('id'));
+		if ($id) {
+			if (framePtw::_()->getTable($this->_tbl)->delete(array('id' => $id))) {
 				return true;
 			} else
-				$this->pushError (__('Database error detected', PTW_LANG_CODE));
+				$this->pushError(__('Database error detected', PTW_LANG_CODE));
 		} else
 			$this->pushError(__('Invalid ID', PTW_LANG_CODE));
 		return false;
@@ -191,18 +196,25 @@ class tablesModelPtw extends modelPtw {
 		}
 		return $uid;
 	}
-	public function updateLabel($d = array()) {
-		$d['id'] = isset($d['id']) ? (int) $d['id'] : 0;
-		if(!empty($d['id'])) {
-			$d['label'] = isset($d['label']) ? trim($d['label']) : '';
-			if(!empty($d['label'])) {
+	public function updateLabel($d = array())
+	{
+		check_ajax_referer('ptw-save-nonce', 'ptwNonce');
+		$mainCap = framePtw::_()->getModule('adminmenu')->getMainCap();
+		if (!$mainCap) {
+			$this->pushError(__('Incorrect data!', PTW_LANG_CODE));
+			return false;
+		}
+		$d['id'] = isset($d['id']) ? (int) reqPtw::getVar('id') : 0;
+		if (!empty($d['id'])) {
+			$d['label'] = isset($d['label']) ? esc_html(reqPtw::getVar('label')) : '';
+			if (!empty($d['label'])) {
 				return $this->updateById(array(
 					'label' => $d['label']
 				), $d['id']);
 			} else
-				$this->pushError (__('Name can not be empty', PTW_LANG_CODE));
+				$this->pushError(__('Name can not be empty', PTW_LANG_CODE));
 		} else
-			$this->pushError (__('Invalid ID', PTW_LANG_CODE));
+			$this->pushError(__('Invalid ID', PTW_LANG_CODE));
 		return false;
 	}
 	public function getDifferences($popup, $original) {

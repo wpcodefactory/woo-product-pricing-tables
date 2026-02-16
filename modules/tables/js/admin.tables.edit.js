@@ -107,7 +107,7 @@ jQuery(document).ready(function(){
 		if(confirm(toeLangPtw('Are you sure want to remove this Table?'))) {
 			jQuery.sendFormPtw({
 				btn: this
-			,	data: {mod: 'tables', action: 'remove', id: ptwGetFabric().getBlocks()[0].get('id')}	//[0] - we have only one block in this plugin - table block
+			,	data: {mod: 'tables', action: 'remove', id: ptwGetFabric().getBlocks()[0].get('id'),ptwDeleteNonce:window.ptwDeleteNonce}	//[0] - we have only one block in this plugin - table block
 			,	onSuccess: function(res) {
 					if(!res.error) {
 						toeRedirect( ptwAddNewUrl );
@@ -475,7 +475,7 @@ function ptwFinishEditTableLabel(label) {
 	jQuery('#ptwTableEditableLabelShell').data('sending', 1);
 	jQuery.sendFormPtw({
 		btn: jQuery('#ptwTableEditableLabelShell')
-	,	data: {mod: 'tables', action: 'updateLabel', label: label, id: _ptwGetTableBlock().get('id')}
+	,	data: {mod: 'tables', action: 'updateLabel', label: label, id: _ptwGetTableBlock().get('id'),ptwNonce: window.ptwNonce}
 	,	onSuccess: function(res) {
 			if(!res.error) {
 				var $labelHtml = jQuery('#ptwTableEditableLabel')

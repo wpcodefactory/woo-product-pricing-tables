@@ -133,6 +133,7 @@ class templatesPtw extends modulePtw {
 		framePtw::_()->addScript('icheck', PTW_JS_PATH. 'icheck.min.js');
 		framePtw::_()->addStyle('tables.icheck', PTW_CSS_PATH. 'jquery.icheck.css');
 		framePtw::_()->addScript('corePtw', PTW_JS_PATH . 'core.js');
+		framePtw::_()->addScript('adminTables', PTW_JS_PATH . 'admin.tables.edit.js');
 		
 		$ajaxurl = admin_url('admin-ajax.php');
 		$jsData = array(
