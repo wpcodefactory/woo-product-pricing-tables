@@ -47,7 +47,7 @@
 	define('PTW_EOL', "\n");
     
     define('PTW_PLUGIN_INSTALLED', true);
-    define('PTW_VERSION', '1.0.8');
+    define('PTW_VERSION', '1.0.9');
     define('PTW_USER', 'user');
     
     define('PTW_CLASS_PREFIX', 'ptwc');
