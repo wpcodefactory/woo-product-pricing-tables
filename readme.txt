@@ -102,7 +102,7 @@ We are always ready to collaborate with our users to widen the auditory! Please,
 
 == Changelog ==
 
-2026-02-17 - version 1.0.8
+2026-02-17 - version 1.0.9
 * Fix - Security - SQL injection vulnerability fixed.
 
 = 1.0.8 =
