@@ -10,26 +10,14 @@
 defined( 'ABSPATH' ) || exit;
 
 class templatesPtw extends modulePtw {
-    protected $_styles = array();
+	protected $_styles = array();
 	private $_cdnUrl = '';
-	
+
 	public function __construct($d) {
 		parent::__construct($d);
 		$this->getCdnUrl();	// Init CDN URL
 	}
 	public function getCdnUrl() {
-//		if(empty($this->_cdnUrl)) {
-//			if((int) framePtw::_()->getModule('options')->get('use_local_cdn')) {
-//				$uploadsDir = wp_upload_dir( null, false );
-//				$this->_cdnUrl = $uploadsDir['baseurl']. '/'. PTW_CODE. '/';
-//				if(uriPtw::isHttps()) {
-//					$this->_cdnUrl = str_replace('http://', 'https://', $this->_cdnUrl);
-//				}
-//				dispatcherPtw::addFilter('externalCdnUrl', array($this, 'modifyExternalToLocalCdn'));
-//			} else {
-//				$this->_cdnUrl = (uriPtw::isHttps() ? 'https' : 'http'). '://supsystic-42d7.kxcdn.com/';
-//			}
-//		}
 		$this->_cdnUrl = (uriPtw::isHttps() ? 'https' : 'http'). '://woobewoo-14700.kxcdn.com/';
 		return $this->_cdnUrl;
 	}
@@ -40,8 +28,8 @@ class templatesPtw extends modulePtw {
 			$url);
 		return $url;
 	}
-    public function init() {
-        if (is_admin()) {
+	public function init() {
+		if (is_admin()) {
 			if($isAdminPlugOptwPage = framePtw::_()->isAdminPlugOptwPage()) {
 				$this->loadCoreJs();
 				$this->loadAdminCoreJs();
@@ -53,8 +41,8 @@ class templatesPtw extends modulePtw {
 				framePtw::_()->addStyle('woobewoo-for-all-admin-'. PTW_CODE, PTW_CSS_PATH. 'woobewoo-for-all-admin.css');
 			}
 		}
-        parent::init();
-    }
+		parent::init();
+	}
 	public function loadMediaScriptw() {
 		if(function_exists('wp_enqueue_media')) {
 			wp_enqueue_media();
@@ -150,7 +138,7 @@ class templatesPtw extends modulePtw {
 		framePtw::_()->addStyle('tables.icheck', PTW_CSS_PATH. 'jquery.icheck.css');
 		framePtw::_()->addScript('corePtw', PTW_JS_PATH . 'core.js');
 		framePtw::_()->addScript('adminTables', PTW_JS_PATH . 'admin.tables.edit.js');
-		
+
 		$ajaxurl = admin_url('admin-ajax.php');
 		$jsData = array(
 			'siteUrl'					=> PTW_SITE_URL,
@@ -161,8 +149,6 @@ class templatesPtw extends modulePtw {
 			'ajaxurl'					=> $ajaxurl,
 			'options'					=> framePtw::_()->getModule('options')->getAllowedPublicOptions(),
 			'PTW_CODE'					=> PTW_CODE,
-			//'ball_loader'				=> PTW_IMG_PATH. 'ajax-loader-ball.gif',
-			//'ok_icon'					=> PTW_IMG_PATH. 'ok-icon.png',
 		);
 		if(is_admin()) {
 			$jsData['isPro'] = framePtw::_()->getModule('promo')->isPro();
@@ -207,7 +193,7 @@ class templatesPtw extends modulePtw {
 			framePtw::_()->addStyle('bootstrap', framePtw::_()->getModule('tables')->getAssetsUrl(). 'css/bootstrap.min.css');
 			framePtw::_()->addStyle('bootstrap-theme', framePtw::_()->getModule('tables')->getAssetsUrl(). 'css/bootstrap-theme.min.css');
 			framePtw::_()->addScript('bootstrap', PTW_JS_PATH. 'bootstrap.min.js');
-			
+
 			framePtw::_()->addStyle('jasny-bootstrap', PTW_CSS_PATH. 'jasny-bootstrap.min.css');
 			framePtw::_()->addScript('jasny-bootstrap', PTW_JS_PATH. 'jasny-bootstrap.min.js');
 			$loaded = true;

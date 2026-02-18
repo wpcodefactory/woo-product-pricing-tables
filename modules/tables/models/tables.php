@@ -81,7 +81,7 @@ class tablesModelPtw extends modelPtw {
 	public function clear() {
 		if(framePtw::_()->getTable( $this->_tbl )->delete(array('additionalCondition' => 'original_id != 0'))) {
 			return true;
-		} else 
+		} else
 			$this->pushError (__('Database error detected', PTW_LANG_CODE));
 		return false;
 	}
@@ -97,20 +97,14 @@ class tablesModelPtw extends modelPtw {
 		if(!$imgsPath) {
 			$imgsPath = $this->getModule()->getAssetsUrl(). 'img/prev/';
 		}
-		$row['params'] = isset($row['params']) && !empty($row['params']) 
+		$row['params'] = isset($row['params']) && !empty($row['params'])
 			? utilsPtw::unserialize(base64_decode($row['params']), true)
 			: array();
 
-		/*
-		echo "<Pre>";
-		print_r($row['params']);
-		echo "</pre>";
-		/**/
-
 		$row['params'] = $this->_afterDbReplace($this->_afterDbParams( $row['params'] ));
 		$row = $this->_afterDbReplace($row);
-		$row['img_url'] = isset($row['img']) && !empty($row['img']) 
-			? $imgsPath. $row['img'] 
+		$row['img_url'] = isset($row['img']) && !empty($row['img'])
+			? $imgsPath. $row['img']
 			: $imgsPath. strtolower(str_replace(array(' ', '.'), '-', $row['label'])). '.jpg';
 		$row['id'] = (int) $row['id'];
 		$row['original_id'] = (int) $row['original_id'];
@@ -278,7 +272,7 @@ class tablesModelPtw extends modelPtw {
 		return empty($keysImplode) ? $key : implode('.', $keysImplode). '.'. $key;
 	}
 	private function _assignKeyArr($from, &$to, $key) {
-		$subKeys = explode('.', $key);	
+		$subKeys = explode('.', $key);
 		// Yeah, hardcode, I know.............
 		switch(count($subKeys)) {
 			case 4:
@@ -313,17 +307,6 @@ class tablesModelPtw extends modelPtw {
 		if($d['id'] && $d['new_tpl_id']) {
 			$currentTable= $this->getById( $d['id'] );
 			$newTpl = $this->getById( $d['new_tpl_id'] );
-			// For now - all parameters from new template will be moved to table
-			/*$originalTable = $this->getById( $currentTable['original_id'] );
-			$diffFromOriginal = $this->getDifferences($currentTable, $originalTable);
-
-			if(!empty($diffFromOriginal)) {
-				if(isset($newTpl['params'])) {
-					foreach($diffFromOriginal as $k) {
-						$this->_assignKeyArr($currentTable, $newTpl, $k);
-					}
-				}
-			}*/
 			framePtw::_()->getModule('promo')->getModel()->saveUsageStat('change_to_tpl.'. strtolower(str_replace(' ', '-', $newTpl['label'])));
 			$newTpl['original_id'] = $newTpl['id'];	// It will be our new original
 			$newTpl['id'] = $currentTable['id'];

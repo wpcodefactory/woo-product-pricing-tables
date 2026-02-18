@@ -8,7 +8,7 @@ Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The best way to create Productt Pricing Tables for your Woo products easily without any coding skills.  Amazing, responsive Product Pricing Table with No Coding Required.
+The best way to create Product Pricing Tables for your Woo products easily without any coding skills.  Amazing, responsive Product Pricing Table with No Coding Required.
 
 == Description ==
 
@@ -17,7 +17,7 @@ It's never been so easy to create and manage pricing and comparison tables . Use
 
 = Pricing Table Features =
 * **User-friendly table builder**
-Every piece of table has its own editor to customize. 
+Every piece of table has its own editor to customize.
 * **Templates to choose from**
 Different presets for every taste.
 * **Automated Woo product uploader**
@@ -33,7 +33,7 @@ No more broken price tables on mobile devices - enable responsivity, and your co
 * **Text and Background Color Settings**
 Pick any color from the palette for every element of table
 * **Various Fonts**
-List overloaded with different font styles 
+List overloaded with different font styles
 * **Built-in CSS Editor**
 An ability for advanced users of CSS to show skill in table editing
 * **Tables Export/Import**
@@ -68,7 +68,7 @@ Press Activate button
 
 
 Video tutorial how to set up WooCommerce Pricing Table by WooBeWoo
-[youtube https://youtu.be/rZqXMXFAn-0] 
+[youtube https://youtu.be/rZqXMXFAn-0]
 
 
 == Frequently asked questions ==
@@ -89,7 +89,7 @@ If you have problems with the work of plugin or something is not working as it s
 *Ensure that you plugin version, your theme version and your WordPress are updated and the problem has not already been solved in a later plugin update.
 If none of the this advises help you, contact us via [support form on our website](https://woobewoo.com/contact-us/) and describe your problem.
 
- = How can I translate a plugin? = 
+ = How can I translate a plugin? =
 We are always ready to collaborate with our users to widen the auditory! Please, read [this article] (http://woobewoo.com/documentation/translation/) if you'd like to translate the plugin and get the PRO version as a reward!
 
 == Screenshots ==
@@ -102,8 +102,10 @@ We are always ready to collaborate with our users to widen the auditory! Please,
 
 == Changelog ==
 
-2026-02-17 - version 1.0.9
+= 1.0.9 - 18/02/2026 =
 * Fix - Security - SQL injection vulnerability fixed.
+* Dev - Coding standards improved.
+* WC tested up to: 10.5.
 
 = 1.0.8 =
  * Code update

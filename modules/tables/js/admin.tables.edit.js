@@ -16,25 +16,25 @@ var ptwBlockCssEditor = (function(){
 		,	lineWrapping: true
 		,	lineNumbers: true
 		,	matchBrackets: true
-	    ,	autoCloseBrackets: true
-	    ,	autofocus: false
+		,	autoCloseBrackets: true
+		,	autofocus: false
 	});
-	
+
 	cssField.CodeMirrorEditor = cssEditor;
-	
+
 	var $container = jQuery('#ptwTableInitEditCssDlg').dialog({
 			modal:    true
 		,	autoOpen: false
 		,	width: '90%'
 		,	height: (jQuery(window).height() / 10) * 8.5
 		,	show: {
-	            effect: "fade",
-	            duration: 1000
-	        }
-	    ,   hide: {
-	            effect: "fade",
-	            duration: 500
-	        }
+				effect: "fade",
+				duration: 1000
+			}
+		,   hide: {
+				effect: "fade",
+				duration: 500
+			}
 		,	buttons:  [
 				{
 					text: 'Ok'
@@ -47,7 +47,7 @@ var ptwBlockCssEditor = (function(){
 						editBlock._rebuildCss();
 						editBlock.contentChanged();
 					}
-					
+
 					$container.dialog('close');
 					editBlock = null;
 				}
@@ -101,10 +101,10 @@ jQuery(document).ready(function(){
 					}
 				}
 				block.addPtwEl(self);
-            	//#212
+				//#212
 				if(self.hasClass('ptwColFooter')) {
-                    self.prev().addClass('ptwColFooter')
-                }
+					self.prev().addClass('ptwColFooter')
+				}
 				self.remove();
 			}
 		});
@@ -295,46 +295,46 @@ jQuery(document).ready(function(){
 		_ptwGetTableBlock().setParam('enable_switch_toggle', jQuery(this).prop('checked') ? 1 : 0);
 		//_ptwEnableEditButton();
 	});
-    /*
-    _ptwEnableEditButton();
-    //Set switch options
-    jQuery('.ptwTableSettingsShell input[name="params[switch_options]"]').change(function(){
-        _ptwGetTableBlock().setParam('switch_options', jQuery(this).val());
-    });
+	/*
+	_ptwEnableEditButton();
+	//Set switch options
+	jQuery('.ptwTableSettingsShell input[name="params[switch_options]"]').change(function(){
+		_ptwGetTableBlock().setParam('switch_options', jQuery(this).val());
+	});
 */
 	//Set switch text
 	jQuery('.ptwTableSettingsShell input[name="params[switch_text]"]').change(function(){
-        _ptwGetTableBlock().setParam('switch_text', jQuery(this).val());
-    });
-    //Set switch type
-    jQuery('.ptwTableSettingsShell select[name="params[switch_type]"]').change(function(){
-        _ptwGetTableBlock().setParam('switch_type', jQuery(this).val());
-    });
-    //Set switch position
-    jQuery('.ptwTableSettingsShell select[name="params[switch_position]"]').change(function(){
-    	_ptwGetTableBlock().setParam('switch_position', jQuery(this).val());
-    });
-    //Set switch options names / selected
-    jQuery('.ptwTableSettingsShell input[name="params[option_name_input]"]').change(function(){
-        _ptwGetTableBlock().setParam('option_name_input', jQuery(this).val());
-    });
+		_ptwGetTableBlock().setParam('switch_text', jQuery(this).val());
+	});
+	//Set switch type
+	jQuery('.ptwTableSettingsShell select[name="params[switch_type]"]').change(function(){
+		_ptwGetTableBlock().setParam('switch_type', jQuery(this).val());
+	});
+	//Set switch position
+	jQuery('.ptwTableSettingsShell select[name="params[switch_position]"]').change(function(){
+		_ptwGetTableBlock().setParam('switch_position', jQuery(this).val());
+	});
+	//Set switch options names / selected
+	jQuery('.ptwTableSettingsShell input[name="params[option_name_input]"]').change(function(){
+		_ptwGetTableBlock().setParam('option_name_input', jQuery(this).val());
+	});
 
-    // Border color picker
-    _ptwCreateColorPickerFrom('.ptwSwitchColorBorder', function(pcColor) {
-        _ptwGetTableBlock().setParam('switch_color_border', pcColor.formatted);
-    });
-    // Button color picker
-    _ptwCreateColorPickerFrom('.ptwSwitchColorButton', function(pcColor) {
-        _ptwGetTableBlock().setParam('switch_color_button', pcColor.formatted);
-    });
-    // Button text color picker
-    _ptwCreateColorPickerFrom('.ptwSwitchColorButtonText', function(pcColor) {
-        _ptwGetTableBlock().setParam('switch_color_button_text', pcColor.formatted);
-    });
-    // Button text no active color picker
-    _ptwCreateColorPickerFrom('.ptwSwitchColorButtonTextNoactive', function(pcColor) {
-        _ptwGetTableBlock().setParam('switch_color_button_text_noactive', pcColor.formatted);
-    });
+	// Border color picker
+	_ptwCreateColorPickerFrom('.ptwSwitchColorBorder', function(pcColor) {
+		_ptwGetTableBlock().setParam('switch_color_border', pcColor.formatted);
+	});
+	// Button color picker
+	_ptwCreateColorPickerFrom('.ptwSwitchColorButton', function(pcColor) {
+		_ptwGetTableBlock().setParam('switch_color_button', pcColor.formatted);
+	});
+	// Button text color picker
+	_ptwCreateColorPickerFrom('.ptwSwitchColorButtonText', function(pcColor) {
+		_ptwGetTableBlock().setParam('switch_color_button_text', pcColor.formatted);
+	});
+	// Button text no active color picker
+	_ptwCreateColorPickerFrom('.ptwSwitchColorButtonTextNoactive', function(pcColor) {
+		_ptwGetTableBlock().setParam('switch_color_button_text_noactive', pcColor.formatted);
+	});
 
 
 	// always save 'is_horisontal_row_type'
@@ -378,11 +378,11 @@ jQuery(document).ready(function(){
 	//jQuery('#containerWrapper .ptwSettingsTabs a').on('click', function(){
 	//	var tab = $(this)
 	//	,	href = tab.attr('data-href');
-     //   $('#containerWrapper .ptwSettingsTabs a').removeClass('nav-tab-active');
-     //   $('#containerWrapper .ptwSettingsContent div').removeClass('active');
+	 //   $('#containerWrapper .ptwSettingsTabs a').removeClass('nav-tab-active');
+	 //   $('#containerWrapper .ptwSettingsContent div').removeClass('active');
 	//
-     //   tab.addClass('nav-tab-active');
-     //   $('#containerWrapper .ptwSettingsContent .' + href).addClass('active');
+	 //   tab.addClass('nav-tab-active');
+	 //   $('#containerWrapper .ptwSettingsContent .' + href).addClass('active');
 	//});
 
 });
@@ -468,7 +468,7 @@ function _ptwCheckBgColorNotice() {
 					{
 						text: 'OK, got it!',
 						"class": 'ui-button ui-state-default',
-						click: function() {                     
+						click: function() {
 						   jQuery('#ptwTableAllColsHaveBgColorWnd').dialog('close');
 						}
 					}
