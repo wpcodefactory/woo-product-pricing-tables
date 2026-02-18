@@ -54,7 +54,7 @@ class tablesModelPtw extends modelPtw {
 	 */
 	public function remove($id)
 	{
-		if (! check_ajax_referer( 'ptw-delete-nonce', 'ptwDeleteNonce', false ) || ! framePtw::_()->getModule( 'adminmenu' )->getMainCap()) {
+		if (! check_ajax_referer( 'ptw-delete-nonce', 'ptwDeleteNonce', false ) || ! current_user_can(framePtw::_()->getModule( 'adminmenu' )->getMainCap())) {
 				$this->pushError( __( 'Invalid request.', PTW_LANG_CODE ) );
 				return false;
 		}
@@ -222,7 +222,7 @@ class tablesModelPtw extends modelPtw {
 	{
 		check_ajax_referer('ptw-save-nonce', 'ptwNonce');
 		$mainCap = framePtw::_()->getModule('adminmenu')->getMainCap();
-		if (!$mainCap) {
+		if (!current_user_can($mainCap)) {
 			$this->pushError(__('Incorrect data!', PTW_LANG_CODE));
 			return false;
 		}
