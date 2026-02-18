@@ -45,28 +45,28 @@ class reqPtw {
         switch($from) {
             case 'get':
                 if(isset($_GET[$name]))
-                    return sanitize_text_field($_GET[$name]);
+                    return self::sanitize($_GET[$name]);
             break;
             case 'post':
                 if(isset($_POST[$name]))
-                    return sanitize_text_field($_POST[$name]);
+                    return self::sanitize($_POST[$name]);
             break;
             case 'file':
             case 'files':
                 if(isset($_FILES[$name]))
-                    return sanitize_text_field($_FILES[$name]);
+                    return self::sanitize($_FILES[$name]);
                 break;
             case 'session':
                 if(isset($_SESSION[$name]))
-                    return sanitize_text_field($_SESSION[$name]);
+                    return self::sanitize($_SESSION[$name]);
 				break;
             case 'server':
                 if(isset($_SERVER[$name]))
-                    return sanitize_text_field($_SERVER[$name]);
+                    return self::sanitize($_SERVER[$name]);
 				break;
 			case 'cookie':
 				if(isset($_COOKIE[$name])) {
-					$value = sanitize_text_field($_COOKIE[$name]);
+					$value = self::sanitize($_COOKIE[$name]);
 					if(strpos($value, '_JSON:') === 0) {
 						$value = utilsPtw::jsonDecode($value, array_pop(explode('_JSON:', $value)));
 					}
@@ -76,6 +76,25 @@ class reqPtw {
         }
         return $default;
     }
+
+	/**
+	 * sanitize.
+	 *
+	 * @version 1.0.9
+	 * @since   1.0.9
+	 *
+	 * @param mixed $value Value to sanitize.
+	 *
+	 * @return mixed
+	 */
+	static public function sanitize( $value ) {
+		return (
+			is_array( $value ) ?
+			array_map( 'sanitize_text_field', $value ) :
+			sanitize_text_field( $value )
+		);
+	}
+
 	static public function isEmpty($name, $from = 'all') {
 		$val = self::getVar($name, $from);
 		return empty($val);
