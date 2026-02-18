@@ -375,17 +375,8 @@ jQuery(document).ready(function(){
 		return false;
 	});
 
-	//jQuery('#containerWrapper .ptwSettingsTabs a').on('click', function(){
-	//	var tab = $(this)
-	//	,	href = tab.attr('data-href');
-	 //   $('#containerWrapper .ptwSettingsTabs a').removeClass('nav-tab-active');
-	 //   $('#containerWrapper .ptwSettingsContent div').removeClass('active');
-	//
-	 //   tab.addClass('nav-tab-active');
-	 //   $('#containerWrapper .ptwSettingsContent .' + href).addClass('active');
-	//});
-
 });
+
 function _ptwSetResponsiveMinColWidth() {
 	var $ptwRespMinColWidthObj = jQuery(".ptwRespMinColW");
 	if(jQuery('.ptwTableSettingsShell input[name="params[enb_responsive]"]').prop("checked")) {
@@ -395,22 +386,7 @@ function _ptwSetResponsiveMinColWidth() {
 	}
 	_ptwGetTableBlock().setParam('resp_min_col_width', jQuery('.ptwTableSettingsShell input[name="params[resp_min_col_width]"]').val());
 }
-/*
-function _ptwEnableEditButton() {
-	var $ptwEditButton = jQuery(".ptwSwitchToggleOpt");
-	var $toggleButton = jQuery(".ptwSwitchWrapper");
 
-	if(jQuery('.ptwTableSettingsShell input[name="params[enable_switch_toggle]"]').prop("checked")) {
-		$ptwEditButton.removeClass("ptwDisplNone");
-		$toggleButton.removeClass("ptwDisplNone");
-	} else {
-		$ptwEditButton.addClass("ptwDisplNone");
-		$toggleButton.addClass("ptwDisplNone");
-	}
-
-	_ptwGetTableBlock().setParam('resp_min_col_width', jQuery('.ptwTableSettingsShell input[name="params[resp_min_col_width]"]').val());
-}
-*/
 function _ptwTableInitSaveAsCopyDlg() {
 	var $container = jQuery('#ptwTableSaveAsCopyWnd').dialog({
 		modal:    true

@@ -1,4 +1,12 @@
 <?php
+/**
+ * Product Pricing Tables - Config
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 global $wpdb;
 if (!defined('WPLANG') || WPLANG == '') {
 	define('PTW_WPLANG', 'en_GB');
@@ -58,24 +66,27 @@ define('PTW_SUCCESS', 'Success');
 define('PTW_FAILED', 'Failed');
 define('PTW_ERRORS', 'ptwErrors');
 
-define('PTW_ADMIN',	'admin');
+define('PTW_ADMIN', 'admin');
 define('PTW_LOGGED','logged');
-define('PTW_GUEST',	'guest');
+define('PTW_GUEST', 'guest');
 
-define('PTW_ALL',		'all');
+define('PTW_ALL', 'all');
 
-define('PTW_METHODS',		'methods');
-define('PTW_USERLEVELS',	'userlevels');
+define('PTW_METHODS', 'methods');
+define('PTW_USERLEVELS', 'userlevels');
+
 /**
  * Framework instance code, unused for now
  */
 define('PTW_CODE', 'ptw');
 
 define('PTW_LANG_CODE', 'woo-product-pricing-tables');
+
 /**
  * Plugin name
  */
 define('PTW_WP_PLUGIN_NAME', 'Woocommerce Product Pricing Tables');
+
 /**
  * Custom defined for plugin
  */
@@ -84,10 +95,12 @@ define('PTW_FB_LIKE', 'fb_like');
 define('PTW_VIDEO', 'video');
 
 define('PTW_HOME_PAGE_ID', 0);
+
 /**
  * Our product name
  */
 define('PTW_OUR_NAME', 'Pricing Table');
+
 /**
  * Shortcode name
  */

@@ -158,12 +158,12 @@ class templatesPtw extends modulePtw {
 	}
 	public function loadCoreCss() {
 		$this->_styles = dispatcherPtw::applyFilters('coreCssList', array(
-			'stylePtw'			=> array('path' => PTW_CSS_PATH. 'style.css', 'for' => 'admin'),
-			'supsystic-uiPtw'	=> array('path' => PTW_CSS_PATH. 'supsystic-ui.css', 'for' => 'admin'),
-			'dashicons'			=> array('for' => 'admin'),
-			'bootstrap-alerts'	=> array('path' => PTW_CSS_PATH. 'bootstrap-alerts.css', 'for' => 'admin'),
-			'icheck'			=> array('path' => PTW_CSS_PATH. 'jquery.icheck.css', 'for' => 'admin'),
-			'wp-color-picker'	=> array('for' => 'admin'),
+			'stylePtw'         => array('path' => PTW_CSS_PATH. 'style.css', 'for' => 'admin'),
+			'supsystic-uiPtw'  => array('path' => PTW_CSS_PATH. 'supsystic-ui.css', 'for' => 'admin'),
+			'dashicons'        => array('for' => 'admin'),
+			'bootstrap-alerts' => array('path' => PTW_CSS_PATH. 'bootstrap-alerts.css', 'for' => 'admin'),
+			'icheck'           => array('path' => PTW_CSS_PATH. 'jquery.icheck.css', 'for' => 'admin'),
+			'wp-color-picker'  => array('for' => 'admin'),
 		));
 		foreach($this->_styles as $s => $sInfo) {
 			if(!empty($sInfo['path'])) {
