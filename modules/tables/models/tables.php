@@ -1,4 +1,14 @@
 <?php
+/**
+ * Product Pricing Tables - tablesModelPtw Class
+ *
+ * @version 1.0.9
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 class tablesModelPtw extends modelPtw {
 	private $_linksReplacement = array();
 	public function __construct() {
@@ -36,6 +46,12 @@ class tablesModelPtw extends modelPtw {
 		$original = $this->_escTplData( $original );
 		return $this->insert( $original );
 	}
+
+	/**
+	 * remove.
+	 *
+	 * @version 1.0.9
+	 */
 	public function remove($id)
 	{
 		if (! check_ajax_referer( 'ptw-delete-nonce', 'ptwDeleteNonce', false ) || ! framePtw::_()->getModule( 'adminmenu' )->getMainCap()) {
@@ -196,6 +212,12 @@ class tablesModelPtw extends modelPtw {
 		}
 		return $uid;
 	}
+
+	/**
+	 * updateLabel.
+	 *
+	 * @version 1.0.9
+	 */
 	public function updateLabel($d = array())
 	{
 		check_ajax_referer('ptw-save-nonce', 'ptwNonce');

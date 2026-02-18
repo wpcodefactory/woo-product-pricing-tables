@@ -1,4 +1,14 @@
 <?php
+/**
+ * Product Pricing Tables - reqPtw Class
+ *
+ * @version 1.0.9
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 class reqPtw {
     static protected $_requestData;
     static protected $_requestMethod;
@@ -11,12 +21,17 @@ class reqPtw {
 			session_start();
 		}
 	}
-/**
- * @param string $name key in variables array
- * @param string $from from where get result = "all", "input", "get"
- * @param mixed $default default value - will be returned if $name wasn't found
- * @return mixed value of a variable, if didn't found - $default (NULL by default)
- */
+
+	/**
+	 * getVar.
+	 *
+	 * @version 1.0.9
+	 *
+	 * @param string $name key in variables array
+	 * @param string $from from where get result = "all", "input", "get"
+	 * @param mixed $default default value - will be returned if $name wasn't found
+	 * @return mixed value of a variable, if didn't found - $default (NULL by default)
+	 */
     static public function getVar($name, $from = 'all', $default = NULL) {
         $from = strtolower($from);
         if($from == 'all') {

@@ -1,3 +1,11 @@
+/**
+ * Product Pricing Tables - admin.tables.edit.js
+ *
+ * @version 1.0.9
+ *
+ * @author woobewoo
+ */
+
 var g_ptwTableBlock = null;
 var ptwBlockCssEditor = (function(){
 	var object = {},
@@ -102,7 +110,11 @@ jQuery(document).ready(function(){
 		});
 	})(jQuery);
 
-	// Delete btn init
+	/**
+	 * Delete btn init.
+	 *
+	 * @version 1.0.9
+	 */
 	jQuery('.ptwTableRemoveBtn').click(function(){
 		if(confirm(toeLangPtw('Are you sure want to remove this Table?'))) {
 			jQuery.sendFormPtw({
@@ -469,6 +481,12 @@ function _ptwCheckBgColorNotice() {
 		}
 	}
 }
+
+/**
+ * ptwFinishEditTableLabel.
+ *
+ * @version 1.0.9
+ */
 function ptwFinishEditTableLabel(label) {
 	if(jQuery('#ptwTableEditableLabelShell').data('sending')) return;
 	if(!jQuery('#ptwTableEditableLabelTxt').data('ready')) return;

@@ -1,4 +1,14 @@
 <?php
+/**
+ * Product Pricing Tables - optionsViewPtw Class
+ *
+ * @version 1.0.9
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 class optionsViewPtw extends viewPtw {
 	private $_news = array();
 	public function getNewFeatures() {
@@ -21,6 +31,12 @@ class optionsViewPtw extends viewPtw {
 		}
 		return $res;
 	}
+
+	/**
+	 * getAdminPage.
+	 *
+	 * @version 1.0.9
+	 */
     public function getAdminPage() {
 		$tabs = $this->getModule()->getTabs();
 		$activeTab = $this->getModule()->getActiveTab();

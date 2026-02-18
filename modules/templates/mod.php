@@ -1,4 +1,14 @@
 <?php
+/**
+ * Product Pricing Tables - templatesPtw Class
+ *
+ * @version 1.0.9
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 class templatesPtw extends modulePtw {
     protected $_styles = array();
 	private $_cdnUrl = '';
@@ -126,6 +136,12 @@ class templatesPtw extends modulePtw {
 		framePtw::_()->addScript('icheck', PTW_JS_PATH. 'icheck.min.js');
 		$this->loadTooltipster();
 	}
+
+	/**
+	 * loadCoreJs.
+	 *
+	 * @version 1.0.9
+	 */
 	public function loadCoreJs() {
 		framePtw::_()->addScript('jquery');
 
