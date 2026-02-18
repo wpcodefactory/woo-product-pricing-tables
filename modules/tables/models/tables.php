@@ -54,8 +54,8 @@ class tablesModelPtw extends modelPtw {
 	 */
 	public function remove($id) {
 		if (! check_ajax_referer( 'ptw-delete-nonce', 'ptwDeleteNonce', false ) || ! current_user_can(framePtw::_()->getModule( 'adminmenu' )->getMainCap())) {
-				$this->pushError( __( 'Invalid request.', 'woo-product-pricing-tables' ) );
-				return false;
+			$this->pushError( __( 'Invalid request.', 'woo-product-pricing-tables' ) );
+			return false;
 		}
 		$id = (int) esc_html(reqPtw::getVar('id'));
 		if ($id) {
