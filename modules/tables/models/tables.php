@@ -57,7 +57,7 @@ class tablesModelPtw extends modelPtw {
 			$this->pushError( __( 'Invalid request.', 'woo-product-pricing-tables' ) );
 			return false;
 		}
-		$id = (int) esc_html(reqPtw::getVar('id'));
+		$id = (int) $id;
 		if ($id) {
 			if (framePtw::_()->getTable($this->_tbl)->delete(array('id' => $id))) {
 				return true;
@@ -224,9 +224,9 @@ class tablesModelPtw extends modelPtw {
 			$this->pushError(__('Incorrect data!', 'woo-product-pricing-tables'));
 			return false;
 		}
-		$d['id'] = isset($d['id']) ? (int) reqPtw::getVar('id') : 0;
+		$d['id'] = isset($d['id']) ? (int) $d['id'] : 0;
 		if (!empty($d['id'])) {
-			$d['label'] = isset($d['label']) ? esc_html(reqPtw::getVar('label')) : '';
+			$d['label'] = isset($d['label']) ? sanitize_text_field($d['label']) : '';
 			if (!empty($d['label'])) {
 				return $this->updateById(array(
 					'label' => $d['label']
