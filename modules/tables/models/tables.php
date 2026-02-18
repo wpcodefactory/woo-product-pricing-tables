@@ -218,7 +218,7 @@ class tablesModelPtw extends modelPtw {
 	 * @version 1.0.9
 	 */
 	public function updateLabel($d = array()) {
-		check_ajax_referer('ptw-save-nonce', 'ptwNonce');
+		check_ajax_referer('ptw-save-nonce', 'ptwSaveNonce');
 		$mainCap = framePtw::_()->getModule('adminmenu')->getMainCap();
 		if (!current_user_can($mainCap)) {
 			$this->pushError(__('Incorrect data!', 'woo-product-pricing-tables'));

@@ -53,7 +53,7 @@ class optionsViewPtw extends viewPtw {
 			}
 		}
 		framePtw::_()->addJSVar('adminOptionsPtw', 'ptwActiveTab', $activeTab);
-		framePtw::_()->addJSVar('adminOptionsPtw', 'ptwNonce', wp_create_nonce('ptw-save-nonce'));
+		framePtw::_()->addJSVar('adminOptionsPtw', 'ptwSaveNonce', wp_create_nonce('ptw-save-nonce'));
 		framePtw::_()->addJSVar('adminOptionsPtw', 'ptwDeleteNonce', wp_create_nonce('ptw-delete-nonce'));
 
 		$this->assign('tabs', $tabs);

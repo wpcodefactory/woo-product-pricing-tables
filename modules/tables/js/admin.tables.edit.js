@@ -493,7 +493,7 @@ function ptwFinishEditTableLabel(label) {
 	jQuery('#ptwTableEditableLabelShell').data('sending', 1);
 	jQuery.sendFormPtw({
 		btn: jQuery('#ptwTableEditableLabelShell')
-	,	data: {mod: 'tables', action: 'updateLabel', label: label, id: _ptwGetTableBlock().get('id'),ptwNonce: window.ptwNonce}
+	,	data: {mod: 'tables', action: 'updateLabel', label: label, id: _ptwGetTableBlock().get('id'),ptwSaveNonce: window.ptwSaveNonce}
 	,	onSuccess: function(res) {
 			if(!res.error) {
 				var $labelHtml = jQuery('#ptwTableEditableLabel')
