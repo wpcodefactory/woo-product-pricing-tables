@@ -1,4 +1,11 @@
 <?php
+/**
+ * Product Pricing Tables - tablesControllerPtw Class
+ *
+ * @version 1.1.0
+ *
+ * @author woobewoo
+ */
 class tablesControllerPtw extends controllerPtw {
 	public function createFromTpl() {
 		$res = new responsePtw();
@@ -9,12 +16,20 @@ class tablesControllerPtw extends controllerPtw {
 			$res->pushError ($this->getModel()->getErrors());
 		return $res->ajaxExec();
 	}
+	/**
+	 * _prepareListForTbl.
+	 *
+	 * @version 1.1.0
+	 */
 	protected function _prepareListForTbl($data) {
 		if(!empty($data)) {
 			foreach($data as $i => $v) {
-				$data[ $i ]['label'] = '<a class="" href="'. $this->getModule()->getEditLink($data[ $i ]['id']). '">'. $data[ $i ]['label']. '&nbsp;<i class="fa fa-fw fa-pencil" style="margin-top: 2px;"></i></a>';
+				$edit_link = reqPtw::escape_output($this->getModule()->getEditLink( $data[$i]['id'] ),'url');
+				$label = reqPtw::escape_output($data[$i]['label'],'html');
+				$data[$i]['label'] = '<a href="' . $edit_link . '">' . $label. '&nbsp;<i class="fa fa-fw fa-pencil" style="margin-top:2px;"></i></a>';
 			}
 		}
+		
 		return $data;
 	}
 	protected function _prepareModelBeforeListSelect($model) {

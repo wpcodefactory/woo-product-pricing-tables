@@ -185,4 +185,31 @@ class reqPtw {
 			$mod = self::getVar('page');     //Admin usage
 		return $mod;
 	}
+	
+	/**
+	 * escape_output.
+	 *
+	 * @version 1.1.0
+	 * @since   1.1.0
+	 *
+	 * @param mixed  $value   The value to be escaped before output.
+	 * @param string $context The output context. Accepts 'html', 'attr', 'url', 'textarea', or 'js'. Default 'html'.
+	 * 
+	 * @return string Escaped value safe for output.
+	 */
+	static public function escape_output( $value, $context = 'html' ) {
+		switch ( $context ) {
+			case 'attr':
+				return esc_attr( $value );
+			case 'url':
+				return esc_url( $value );
+			case 'textarea':
+				return esc_textarea( $value );
+			case 'js':
+				return esc_js( $value );
+			case 'html':
+			default:
+				return esc_html( $value );
+		}
+	}
 }
