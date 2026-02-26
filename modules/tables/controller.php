@@ -6,7 +6,14 @@
  *
  * @author woobewoo
  */
+
+defined( 'ABSPATH' ) || exit;
+
 class tablesControllerPtw extends controllerPtw {
+
+	/**
+	 * createFromTpl.
+	 */
 	public function createFromTpl() {
 		$res = new responsePtw();
 		if(($id = $this->getModel()->createFromTpl(reqPtw::get('post'))) != false) {
@@ -16,6 +23,7 @@ class tablesControllerPtw extends controllerPtw {
 			$res->pushError ($this->getModel()->getErrors());
 		return $res->ajaxExec();
 	}
+
 	/**
 	 * _prepareListForTbl.
 	 *
@@ -24,19 +32,24 @@ class tablesControllerPtw extends controllerPtw {
 	protected function _prepareListForTbl($data) {
 		if(!empty($data)) {
 			foreach($data as $i => $v) {
-				$edit_link = reqPtw::escape_output($this->getModule()->getEditLink( $data[$i]['id'] ),'url');
-				$label = reqPtw::escape_output($data[$i]['label'],'html');
-				$data[$i]['label'] = '<a href="' . $edit_link . '">' . $label. '&nbsp;<i class="fa fa-fw fa-pencil" style="margin-top:2px;"></i></a>';
+				$data[ $i ]['label'] = '<a class="" href="'. esc_url($this->getModule()->getEditLink($data[ $i ]['id'])). '">'. esc_html($data[ $i ]['label']). '&nbsp;<i class="fa fa-fw fa-pencil" style="margin-top: 2px;"></i></a>';
 			}
 		}
-		
 		return $data;
 	}
+
+	/**
+	 * _prepareModelBeforeListSelect.
+	 */
 	protected function _prepareModelBeforeListSelect($model) {
 		$where = 'original_id != 0';
 		$model->addWhere( $where );
 		return $model;
 	}
+
+	/**
+	 * _prepareTextLikeSearch.
+	 */
 	protected function _prepareTextLikeSearch($val) {
 		$query = '(label LIKE "%'. $val. '%"';
 		if(is_numeric($val)) {
@@ -45,6 +58,10 @@ class tablesControllerPtw extends controllerPtw {
 		$query .= ')';
 		return $query;
 	}
+
+	/**
+	 * importJSONTable.
+	 */
 	public function importJSONTable() {
 		$res = new responsePtw();
 		$data = reqPtw::getVar('data');
@@ -112,6 +129,10 @@ class tablesControllerPtw extends controllerPtw {
 
 		$res->ajaxExec();
 	}
+
+	/**
+	 * getJSONExportTable.
+	 */
 	public function getJSONExportTable() {
 		$res = new responsePtw();
 		$tableIDList = reqPtw::getVar('tables');
@@ -137,6 +158,10 @@ class tablesControllerPtw extends controllerPtw {
 
 		$res->ajaxExec();
 	}
+
+	/**
+	 * getExportData.
+	 */
 	protected function getExportData($tableIds) {
 		$tableData = $this->getModel()->getFullByIdList($tableIds);
 		if(is_array($tableData) && count($tableData)) {
@@ -155,6 +180,10 @@ class tablesControllerPtw extends controllerPtw {
 		}
 		return $tableData;
 	}
+
+	/**
+	 * remove.
+	 */
 	public function remove() {
 		$res = new responsePtw();
 		if($this->getModel()->remove(reqPtw::getVar('id', 'post'))) {
@@ -163,6 +192,10 @@ class tablesControllerPtw extends controllerPtw {
 			$res->pushError($this->getModel()->getErrors());
 		$res->ajaxExec();
 	}
+
+	/**
+	 * save.
+	 */
 	public function save() {
 		$res = new responsePtw();
 		$data = reqPtw::getVar('data', 'post');
@@ -177,6 +210,10 @@ class tablesControllerPtw extends controllerPtw {
 			$res->pushError($this->getModel()->getErrors());
 		$res->ajaxExec();
 	}
+
+	/**
+	 * changeTpl.
+	 */
 	public function changeTpl() {
 		$res = new responsePtw();
 		if($this->getModel()->changeTpl(reqPtw::get('post'))) {
@@ -187,6 +224,10 @@ class tablesControllerPtw extends controllerPtw {
 			$res->pushError ($this->getModel()->getErrors());
 		return $res->ajaxExec();
 	}
+
+	/**
+	 * exportForDb.
+	 */
 	public function exportForDb() {
 		$forPro = (int) reqPtw::getVar('for_pro', 'get');
 		$tblsCols = array(
@@ -204,6 +245,10 @@ class tablesControllerPtw extends controllerPtw {
 		}
 		exit();
 	}
+
+	/**
+	 * _makeExportQueriesLogicForPro.
+	 */
 	private function _makeExportQueriesLogicForPro($table, $cols) {
 		global $wpdb;
 		$octoList = $this->_getExportData($table, $cols, true);
@@ -214,7 +259,7 @@ class tablesControllerPtw extends controllerPtw {
 			$rowData = array();
 			foreach($octo as $k => $v) {
 				if(!in_array($k, $cols)) continue;
-				
+
 				$val = @mysql_real_escape_string($v);
 				if($k == 'unique_id') $uId = $val;
 				$rowData[ $k ] = $val;
@@ -224,11 +269,16 @@ class tablesControllerPtw extends controllerPtw {
 		}
 		echo str_replace(array('@__'), '', $table). '|'. base64_encode( utilsPtw::serialize($res) );
 	}
+
+	/**
+	 * _getExportData.
+	 */
 	private function _getExportData($table, $cols, $forPro = false) {
 		return dbPtw::get('SELECT '. implode(',', $cols). ' FROM '. $table. ' WHERE original_id = 0 and is_base = 1 and is_pro = '. ($forPro ? '1' : '0'));;
 	}
+
 	/**
-	 * new usage
+	 * _makeExportQueriesLogic.
 	 */
 	private function _makeExportQueriesLogic($table, $cols) {
 		global $wpdb;
@@ -250,17 +300,12 @@ class tablesControllerPtw extends controllerPtw {
 						$uidIndx = $i;
 					}
 				}
-//				$v = ''. stripslashes($v). '';
-//				$v = ''. $wpdb->esc_like($v). '';
-//				$v = addslashes($v);
-				// $arr[] = ''. @mysql_real_escape_string($v). '';
 				$arr[] = $v;
 				$i++;
 			}
 			$valuesArr[] = $arr;
 		}
 		$out = '';
-		//$out .= "\$cols = array('". implode("','", $allKeys). "');". $eol;
 		$out .= "\$data = array(". $eol;
 		foreach($valuesArr as $row) {
 			$uid = str_replace(array('"'), '', $row[ $uidIndx ]);
@@ -273,6 +318,10 @@ class tablesControllerPtw extends controllerPtw {
 		$out .= ");". $eol;
 		return $out;
 	}
+
+	/**
+	 * saveAsCopy.
+	 */
 	public function saveAsCopy() {
 		$res = new responsePtw();
 		$ajaxPostData = reqPtw::get('post');
@@ -292,6 +341,10 @@ class tablesControllerPtw extends controllerPtw {
 		}
 		return $res->ajaxExec();
 	}
+
+	/**
+	 * updateLabel.
+	 */
 	public function updateLabel() {
 		$res = new responsePtw();
 		if($this->getModel()->updateLabel(reqPtw::get('post'))) {
@@ -300,6 +353,10 @@ class tablesControllerPtw extends controllerPtw {
 			$res->pushError ($this->getModel()->getErrors());
 		return $res->ajaxExec();
 	}
+
+	/**
+	 * getPermissions.
+	 */
 	public function getPermissions() {
 		return array(
 			PTW_USERLEVELS => array(
@@ -309,4 +366,3 @@ class tablesControllerPtw extends controllerPtw {
 		);
 	}
 }
-

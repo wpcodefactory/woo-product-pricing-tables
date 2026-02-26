@@ -102,8 +102,8 @@ We are always ready to collaborate with our users to widen the auditory! Please,
 
 == Changelog ==
 
-= 1.1.0 - 25/02/2026 =
-* Fix - Security - SQL injection vulnerability fixed.
+= 1.1.0 - 26/02/2026 =
+* Fix - Security - Output escaped.
 * Dev - Coding standards improved.
 
 = 1.0.9 - 18/02/2026 =
