@@ -8,7 +8,7 @@
 
 jQuery(document).ready(function(){
 	var tblId = 'ptwPagesTbl';
-	jQuery('#'+ tblId).jqGrid({ 
+	jQuery('#'+ tblId).jqGrid({
 		url: ptwTblDataUrl
 	,	datatype: 'json'
 	,	autowidth: true
@@ -33,7 +33,7 @@ jQuery(document).ready(function(){
 	,	sortorder: 'desc'
 	,	jsonReader: { repeatitems : false, id: '0' }
 	,	caption: toeLangPtw('Current Table')
-	,	height: '100%' 
+	,	height: '100%'
 	,	emptyrecords: ''//toeLangPtw('You have no Tables for now.')
 	,	multiselect: true
 	,	onSelectRow: function(rowid, e) {
@@ -95,15 +95,15 @@ jQuery(document).ready(function(){
 			}, tblId);
 		}
 	});
-	
+
 	jQuery('#'+ tblId+ 'EmptyMsg').insertAfter(jQuery('#'+ tblId+ '').parent());
 	jQuery('#'+ tblId+ '').jqGrid('navGrid', '#'+ tblId+ 'Nav', {edit: false, add: false, del: false});
 	jQuery('#cb_'+ tblId+ '').change(function(){
-		jQuery(this).attr('checked') 
+		jQuery(this).attr('checked')
 			? jQuery('#ptwPagesRemoveGroupBtn').removeAttr('disabled')
 			: jQuery('#ptwPagesRemoveGroupBtn').attr('disabled', 'disabled');
 	});
-	
+
 	/**
 	 * ptwPagesRemoveGroupBtn click.
 	 *

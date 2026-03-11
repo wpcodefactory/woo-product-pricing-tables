@@ -130,7 +130,7 @@ class templatesPtw extends modulePtw {
 	 *
 	 * @version 1.1.1
 	 *
-	 * @todo (v1.1.1) removed (after `core.js`): `framePtw::_()->addScript('adminTables', PTW_JS_PATH . 'admin.tables.edit.js');`
+	 * @todo    (v1.1.1) removed (after `core.js`): `framePtw::_()->addScript('adminTables', PTW_JS_PATH . 'admin.tables.edit.js');`
 	 */
 	public function loadCoreJs() {
 		framePtw::_()->addScript('jquery');

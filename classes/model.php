@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 abstract class modelPtw extends baseObjectPtw {
     protected $_data = array();
 	protected $_code = '';
-    
+
 	protected $_orderBy = '';
 	protected $_sortOrder = '';
 	protected $_groupBy = '';
@@ -23,7 +23,7 @@ abstract class modelPtw extends baseObjectPtw {
 	protected $_tbl = '';
 	protected $_lastGetCount = 0;
 	protected $_idField = 'id';
-	
+
     /*public function init() {
 
     }
@@ -40,7 +40,7 @@ abstract class modelPtw extends baseObjectPtw {
 
     }
     public function store($d = array()) {
-        
+
     }*/
 	public function setCode($code) {
         $this->_code = $code;
@@ -51,7 +51,7 @@ abstract class modelPtw extends baseObjectPtw {
 	public function getModule() {
 		return framePtw::_()->getModule( $this->_code );
 	}
-	
+
 	protected function _setTbl($tbl) {
 		$this->_tbl = $tbl;
 	}
@@ -204,7 +204,7 @@ abstract class modelPtw extends baseObjectPtw {
 		if(!empty($ids)) {
 			if(framePtw::_()->getTable( $this->_tbl )->delete(array('additionalCondition' => 'id IN ('. implode(',', $ids). ')'))) {
 				return true;
-			} else 
+			} else
 				$this->pushError (__('Database error detected', PTW_LANG_CODE));
 		} else
 			$this->pushError(__('Invalid ID', PTW_LANG_CODE));
@@ -216,7 +216,7 @@ abstract class modelPtw extends baseObjectPtw {
 	public function delete($params = array()) {
 		if(framePtw::_()->getTable( $this->_tbl )->delete( $params )) {
 			return true;
-		} else 
+		} else
 			$this->pushError (__('Database error detected', PTW_LANG_CODE));
 		return false;
 	}
