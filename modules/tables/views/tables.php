@@ -1,4 +1,14 @@
 <?php
+/**
+ * Product Pricing Tables - tablesViewPtw Class
+ *
+ * @version 1.1.1
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 class tablesViewPtw extends viewPtw {
 	protected $_twig;
 	private $_renderedTables = array();
@@ -9,15 +19,27 @@ class tablesViewPtw extends viewPtw {
 	protected static $isJsAllProductsAssigned = false;
 	protected static $frontendTablesInfo = false;
 
+	/**
+	 * getImportExportTab.
+	 *
+	 * @version 1.1.1
+	 */
 	public function getImportExportTab() {
 		framePtw::_()->getModule('templates')->loadJqGrid();
 		framePtw::_()->addStyle('admin.imex', $this->getModule()->getModPath(). 'css/admin.imex.css');
 		framePtw::_()->addScript('admin.imex', $this->getModule()->getModPath(). 'js/admin.imex.js');
 		framePtw::_()->addScript('admin.tables.list', $this->getModule()->getModPath(). 'js/admin.tables.list.js');
 		framePtw::_()->addJSVar('admin.tables.list', 'ptwTblDataUrl', uriPtw::mod('tables', 'getListForTbl', array('reqType' => 'ajax')));
+		framePtw::_()->addJSVar('admin.tables.list', 'ptwNonce', wp_create_nonce('ptwNonceAction'));
 
 		return parent::getContent('tablesImportExport');
 	}
+
+	/**
+	 * getTabContent.
+	 *
+	 * @version 1.1.1
+	 */
 	public function getTabContent() {
 		framePtw::_()->getModule('templates')->loadJqGrid();
 
@@ -25,10 +47,12 @@ class tablesViewPtw extends viewPtw {
 		framePtw::_()->addScript('admin.tables', $this->getModule()->getModPath(). 'js/admin.tables.js');
 		framePtw::_()->addScript('admin.tables.list', $this->getModule()->getModPath(). 'js/admin.tables.list.js');
 		framePtw::_()->addJSVar('admin.tables.list', 'ptwTblDataUrl', uriPtw::mod('tables', 'getListForTbl', array('reqType' => 'ajax')));
+		framePtw::_()->addJSVar('admin.tables.list', 'ptwNonce', wp_create_nonce('ptwNonceAction'));
 		
 		$this->assign('addNewLink', framePtw::_()->getModule('options')->getTabUrl('tables_add_new'));
 		return parent::getContent('tablesAdmin');
 	}
+
 	public function getAddNewTabContent() {
 		framePtw::_()->getModule('templates')->loadJqueryUi();
 		framePtw::_()->addStyle('admin.tables', $this->getModule()->getModPath(). 'css/admin.tables.css');

@@ -1,4 +1,14 @@
 <?php
+/**
+ * Product Pricing Tables - modelPtw Class
+ *
+ * @version 1.1.1
+ *
+ * @author woobewoo
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 abstract class modelPtw extends baseObjectPtw {
     protected $_data = array();
 	protected $_code = '';
@@ -169,7 +179,24 @@ abstract class modelPtw extends baseObjectPtw {
 			$table->setLimit( $this->_limit );
 		}
 	}
+
+	/**
+	 * removeGroup.
+	 *
+	 * @version 1.1.1
+	 */
 	public function removeGroup($ids) {
+
+		if ( ! wp_verify_nonce( reqPtw::getVar( 'ptwNonce' ), 'ptwNonceAction' ) ) {
+			$this->pushError( __( 'Nonce verification error', 'woo-product-pricing-tables' ) );
+			return false;
+		}
+
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			$this->pushError( __( 'Wrong user', 'woo-product-pricing-tables' ) );
+			return false;
+		}
+
 		if(!is_array($ids))
 			$ids = array($ids);
 		// Remove all empty values

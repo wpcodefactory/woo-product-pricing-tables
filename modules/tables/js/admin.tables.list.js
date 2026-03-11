@@ -1,3 +1,11 @@
+/**
+ * Product Pricing Tables - Admin Tables List JS
+ *
+ * @version 1.1.1
+ *
+ * @author woobewoo
+ */
+
 jQuery(document).ready(function(){
 	var tblId = 'ptwPagesTbl';
 	jQuery('#'+ tblId).jqGrid({ 
@@ -95,6 +103,12 @@ jQuery(document).ready(function(){
 			? jQuery('#ptwPagesRemoveGroupBtn').removeAttr('disabled')
 			: jQuery('#ptwPagesRemoveGroupBtn').attr('disabled', 'disabled');
 	});
+	
+	/**
+	 * ptwPagesRemoveGroupBtn click.
+	 *
+	 * @version 1.1.1
+	 */
 	jQuery('#ptwPagesRemoveGroupBtn').click(function(){
 		var selectedRowIds = jQuery('#ptwPagesTbl').jqGrid ('getGridParam', 'selarrrow')
 		,	listIds = [];
@@ -113,7 +127,7 @@ jQuery(document).ready(function(){
 		if(confirm(confirmMsg)) {
 			jQuery.sendFormPtw({
 				btn: this
-			,	data: {mod: 'tables', action: 'removeGroup', listIds: listIds}
+			,	data: {mod: 'tables', action: 'removeGroup', listIds: listIds, ptwNonce: ptwNonce}
 			,	onSuccess: function(res) {
 					if(!res.error) {
 						jQuery('#ptwPagesTbl').trigger( 'reloadGrid' );
