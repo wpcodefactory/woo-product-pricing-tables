@@ -2,7 +2,7 @@
 /**
  * Product Pricing Tables - templatesPtw Class
  *
- * @version 1.0.9
+ * @version 1.1.1
  *
  * @author woobewoo
  */
@@ -128,7 +128,9 @@ class templatesPtw extends modulePtw {
 	/**
 	 * loadCoreJs.
 	 *
-	 * @version 1.0.9
+	 * @version 1.1.1
+	 *
+	 * @todo (v1.1.1) removed (after `core.js`): `framePtw::_()->addScript('adminTables', PTW_JS_PATH . 'admin.tables.edit.js');`
 	 */
 	public function loadCoreJs() {
 		framePtw::_()->addScript('jquery');
@@ -137,18 +139,17 @@ class templatesPtw extends modulePtw {
 		framePtw::_()->addScript('icheck', PTW_JS_PATH. 'icheck.min.js');
 		framePtw::_()->addStyle('tables.icheck', PTW_CSS_PATH. 'jquery.icheck.css');
 		framePtw::_()->addScript('corePtw', PTW_JS_PATH . 'core.js');
-		framePtw::_()->addScript('adminTables', PTW_JS_PATH . 'admin.tables.edit.js');
 
 		$ajaxurl = admin_url('admin-ajax.php');
 		$jsData = array(
-			'siteUrl'					=> PTW_SITE_URL,
-			'imgPath'					=> PTW_IMG_PATH,
-			'cssPath'					=> PTW_CSS_PATH,
-			'loader'					=> PTW_LOADER_IMG,
-			'close'						=> PTW_IMG_PATH. 'cross.gif',
-			'ajaxurl'					=> $ajaxurl,
-			'options'					=> framePtw::_()->getModule('options')->getAllowedPublicOptions(),
-			'PTW_CODE'					=> PTW_CODE,
+			'siteUrl'  => PTW_SITE_URL,
+			'imgPath'  => PTW_IMG_PATH,
+			'cssPath'  => PTW_CSS_PATH,
+			'loader'   => PTW_LOADER_IMG,
+			'close'    => PTW_IMG_PATH. 'cross.gif',
+			'ajaxurl'  => $ajaxurl,
+			'options'  => framePtw::_()->getModule('options')->getAllowedPublicOptions(),
+			'PTW_CODE' => PTW_CODE,
 		);
 		if(is_admin()) {
 			$jsData['isPro'] = framePtw::_()->getModule('promo')->isPro();
@@ -156,6 +157,7 @@ class templatesPtw extends modulePtw {
 		$jsData = dispatcherPtw::applyFilters('jsInitVariables', $jsData);
 		framePtw::_()->addJSVar('corePtw', 'PTW_DATA', $jsData);
 	}
+
 	public function loadCoreCss() {
 		$this->_styles = dispatcherPtw::applyFilters('coreCssList', array(
 			'stylePtw'         => array('path' => PTW_CSS_PATH. 'style.css', 'for' => 'admin'),
