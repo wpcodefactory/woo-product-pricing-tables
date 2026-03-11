@@ -10,17 +10,21 @@
 defined( 'ABSPATH' ) || exit;
 
 class templatesPtw extends modulePtw {
+
 	protected $_styles = array();
+
 	private $_cdnUrl = '';
 
 	public function __construct($d) {
 		parent::__construct($d);
-		$this->getCdnUrl();	// Init CDN URL
+		$this->getCdnUrl(); // Init CDN URL
 	}
+
 	public function getCdnUrl() {
 		$this->_cdnUrl = (uriPtw::isHttps() ? 'https' : 'http'). '://woobewoo-14700.kxcdn.com/';
 		return $this->_cdnUrl;
 	}
+
 	public function modifyExternalToLocalCdn( $url ) {
 		$url = str_replace(
 			array('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css'),
@@ -28,6 +32,7 @@ class templatesPtw extends modulePtw {
 			$url);
 		return $url;
 	}
+
 	public function init() {
 		if (is_admin()) {
 			if($isAdminPlugOptwPage = framePtw::_()->isAdminPlugOptwPage()) {
@@ -43,18 +48,22 @@ class templatesPtw extends modulePtw {
 		}
 		parent::init();
 	}
+
 	public function loadMediaScriptw() {
 		if(function_exists('wp_enqueue_media')) {
 			wp_enqueue_media();
 		}
 	}
+
 	public function loadTooltipster() {
 		framePtw::_()->addScript('tooltipster', $this->getModPath(). 'lib/tooltipster/jquery.tooltipster.min.js');
 		framePtw::_()->addStyle('tooltipster', $this->getModPath(). 'lib/tooltipster/tooltipster.css');
 	}
+
 	public function loadSlimscroll() {
 		framePtw::_()->addScript('jquery.slimscroll', PTW_JS_PATH. 'slimscroll.min.js');
 	}
+
 	public function loadCodemirror() {
 		framePtw::_()->addStyle('ptwCodemirror', $this->getModPath(). 'lib/codemirror/codemirror.css');
 		framePtw::_()->addStyle('codemirror-addon-hint', $this->getModPath(). 'lib/codemirror/addon/hint/show-hint.css');
@@ -67,6 +76,7 @@ class templatesPtw extends modulePtw {
 		framePtw::_()->addScript('codemirror-mode-css', $this->getModPath(). 'lib/codemirror/mode/css/css.js');
 		framePtw::_()->addScript('codemirror-mode-htmlmixed', $this->getModPath(). 'lib/codemirror/mode/htmlmixed/htmlmixed.js');
 	}
+
 	public function loadJqGrid() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -82,13 +92,16 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadFontAwesome() {
 		framePtw::_()->addStyle('font-awesomePtw', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 	}
+
 	public function loadChosenSelects() {
 		framePtw::_()->addStyle('jquery.chosen', $this->getModPath(). 'lib/chosen/chosen.min.css');
 		framePtw::_()->addScript('jquery.chosen', $this->getModPath(). 'lib/chosen/chosen.jquery.min.js');
 	}
+
 	public function loadJqplot() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -110,6 +123,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadMagicAnims() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -117,6 +131,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadAdminCoreJs() {
 		framePtw::_()->addScript('jquery-ui-dialog');
 		framePtw::_()->addScript('jquery-ui-slider');
@@ -176,6 +191,7 @@ class templatesPtw extends modulePtw {
 		}
 		$this->loadFontAwesome();
 	}
+
 	public function loadJqueryUi() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -186,9 +202,11 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadDatePicker() {
 		framePtw::_()->addScript('jquery-ui-datepicker');
 	}
+
 	public function loadBootstrap() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -201,6 +219,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadTinyMce() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -209,6 +228,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadCustomBootstrapColorpicker() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -218,6 +238,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadBootstrapPartial() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -228,6 +249,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadBootstrapPartialOnlyCss() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -235,6 +257,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadBootstrapSimple() {
 		static $loaded = false;
 		if(!$loaded) {
@@ -242,6 +265,7 @@ class templatesPtw extends modulePtw {
 			$loaded = true;
 		}
 	}
+
 	public function loadGoogleFont( $font ) {
 		static $loaded = array();
 		if(!isset($loaded[ $font ])) {

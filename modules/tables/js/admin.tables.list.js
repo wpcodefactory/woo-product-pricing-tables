@@ -18,7 +18,6 @@ jQuery(document).ready(function(){
 			{name: 'id', index: 'id', searchoptions: {sopt: ['eq']}, width: '50', align: 'center'}
 		,	{name: 'label', index: 'label', searchoptions: {sopt: ['eq']}, align: 'center'}
 		,	{name: 'date_created', index: 'date_created', searchoptions: {sopt: ['eq']}, align: 'center'}
-		//,	{name: 'actions', index: 'actions', searchoptions: {sopt: ['eq']}, align: 'center'}
 		]
 	,	postData: {
 			search: {
@@ -117,7 +116,7 @@ jQuery(document).ready(function(){
 			listIds.push( rowData.id );
 		}
 		var popupLabel = '';
-		if(listIds.length == 1) {	// In table label cell there can be some additional links
+		if(listIds.length == 1) { // In table label cell there can be some additional links
 			var labelCellData = ptwGetGridColDataById(listIds[0], 'label', 'ptwPagesTbl');
 			popupLabel = jQuery(labelCellData).text();
 		}

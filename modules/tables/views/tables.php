@@ -10,6 +10,7 @@
 defined( 'ABSPATH' ) || exit;
 
 class tablesViewPtw extends viewPtw {
+
 	protected $_twig;
 	private $_renderedTables = array();
 
@@ -74,13 +75,16 @@ class tablesViewPtw extends viewPtw {
 
 		return parent::getContent('tablesAddNewAdmin');
 	}
+
 	public function modifyBreadcrumbsForChangeTpl($crumbs) {
 		$crumbs[ count($crumbs) - 1 ]['label'] = __('Modify Table Template', PTW_LANG_CODE);
 		return $crumbs;
 	}
+
 	public function changeMainBreadCrumbsClb($crumbs) {
 		return array( $crumbs[ count($crumbs) - 1 ] );	// Get rid of all other breadcrumbs - leave space on this page for other important things (buttons, etc.)
 	}
+
 	public function getEditTabContent($id) {
 		$isWooCommercePluginActivated = $this->getModule()->isWooCommercePluginActivated();
 		if(!$isWooCommercePluginActivated) {
@@ -146,6 +150,7 @@ class tablesViewPtw extends viewPtw {
 
 		return parent::getContent('tablesEditAdmin');
 	}
+
 	public function showTable($params) {
 		$isWooCommercePluginActivated = $this->getModule()->isWooCommercePluginActivated();
 		if(!$isWooCommercePluginActivated) {
@@ -217,6 +222,7 @@ class tablesViewPtw extends viewPtw {
 	public function showEditTableFormControls() {
 		parent::display('tablesEditFormControls');
 	}
+
 	public function renderTable($table, $isEditMode = false) {
 		if(is_numeric($table)) {
 			$table = $this->getModel()->getById($table);
@@ -246,12 +252,15 @@ class tablesViewPtw extends viewPtw {
 			'isEditMode' => $isEditMode,
 		));
 	}
+
 	public function pushRenderedTable($table) {
 		$this->_renderedTables[] = $table;
 	}
+
 	public function getRenderedTables() {
 		return $this->_renderedTables;
 	}
+
 	public function renderForPost($pid, $params = array()) {
 		//framePtw::_()->setStylesInitialized(false);
 		//framePtw::_()->setScriptwInitialized(false);
@@ -288,16 +297,20 @@ class tablesViewPtw extends viewPtw {
 		}
 		parent::display('tablesRenderForPost');
 	}
+
 	public function getEditorFooter() {
 		return parent::getContent('tablesEditorFooter');
 	}
+
 	public function getFooter() {
 		return parent::getContent('tablesFooter');
 	}
+
 	// Footer parts that need to be in frontend and in editor too
 	public function getCommonFooter() {
 		return parent::getContent('tablesCommonFooter');
 	}
+
 	private function _preparePtwoForRender(&$tables, $isEditMode = false) {
 		if(!empty($tables['blocks'])) {
 			foreach($tables['blocks'] as $i => $block) {
@@ -305,6 +318,7 @@ class tablesViewPtw extends viewPtw {
 			}
 		}
 	}
+
 	public function renderBlock($block = array(), $isEditMode = false) {
 		$this->assign('block', $block);
 		$this->assign('isEditMode', $isEditMode);
@@ -312,6 +326,7 @@ class tablesViewPtw extends viewPtw {
 		$this->_initTwig();
 		return $this->_twig->render($content, array('block' => $block));
 	}
+
 	public function connectFrontendAssets( $tables = array(), $isEditMode = false ) {
 		$isDebbug = (bool) reqPtw::getVar('is_debbug', 'get');
 		$isPro = framePtw::_()->getModule('promo')->isPro();
@@ -348,6 +363,7 @@ class tablesViewPtw extends viewPtw {
 			'standardFonts' => utilsPtw::getStandardFontsList(),
 		));
 	}
+
 	public function connectEditorAssets( $tables = array() ) {
 		$this->assign('adminEmail', get_bloginfo('admin_email'));
 		$this->connectEditorJs( $tables );
@@ -357,6 +373,7 @@ class tablesViewPtw extends viewPtw {
 
 		$this->getModule()->assignRenderedTables();
 	}
+
 	public function connectEditorJs( $tables = array() ) {
 		framePtw::_()->addScript('jquery-ui-core');
 		framePtw::_()->addScript('jquery-ui-widget');
@@ -403,6 +420,7 @@ class tablesViewPtw extends viewPtw {
 
 		framePtw::_()->addJSVar('frontend.tables.editor', 'ptwEditor', $ptwEditor);
 	}
+
 	public function connectEditorCss( $tables = array() ) {
 		// We will use other instance of this lib here - to use prev. one in admin area
 		framePtw::_()->addStyle('tables.icheck', $this->getModule()->getModPath(). 'css/jquery.icheck.css');
@@ -410,6 +428,7 @@ class tablesViewPtw extends viewPtw {
 		framePtw::_()->addStyle('frontend.tables.editor.tinymce', $this->getModule()->getModPath(). 'css/frontend.tables.editor.tinymce.css');
 		framePtw::_()->addStyle('frontend.tables.fonts', $this->getModule()->getAssetsUrl(). 'css/frontend.tables.fonts.css');
 	}
+
 	protected function _initTwig() {
 		if(!$this->_twig) {
 			if(!class_exists('Twig_Autoloader')) {
@@ -426,6 +445,7 @@ class tablesViewPtw extends viewPtw {
 			);
 		}
 	}
+
 	public function adjustBrightness($hex, $steps) {
 		static $converted = array();
 		if(isset($converted[ $hex ]) && isset($converted[ $hex ][ $steps ])) {
@@ -468,6 +488,4 @@ class tablesViewPtw extends viewPtw {
 		$converted[ $hex ][ $steps ] = $return;
 		return $return;
 	}
-
-
 }

@@ -1,4 +1,4 @@
- === Product Pricing Table by WooBeWoo ===
+=== Product Pricing Table by WooBeWoo ===
 Contributors: woobewoo
 Donate link: https://woobewoo.com/plugins/woocommerce-pricing-table/
 Tags: woocommerce, woo, product, wooproduct, price table, pricing table, shop, price, pricing, table, comparison table, css table, comparison, price gird, pricing gird, pricing box, price chart, price plan, chart, plan
@@ -41,7 +41,6 @@ Migrate your tables with just one click via special intuitive-clear functional
 * **Adding images, videos and icons**
 Fulfill your table with visual elements to make customers interested in your product - just in few minutes
 
-
 == Installation ==
 
 a) VIA FTP
@@ -66,10 +65,8 @@ Choose our plugin from the list and click "Install"
 Wait until you get the notification installation went successfully
 Press Activate button
 
-
 Video tutorial how to set up WooCommerce Pricing Table by WooBeWoo
 [youtube https://youtu.be/rZqXMXFAn-0]
-
 
 == Frequently asked questions ==
 

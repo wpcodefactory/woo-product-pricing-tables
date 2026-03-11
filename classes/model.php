@@ -13,41 +13,25 @@ abstract class modelPtw extends baseObjectPtw {
 	protected $_data = array();
 	protected $_code = '';
 
-	protected $_orderBy = '';
-	protected $_sortOrder = '';
-	protected $_groupBy = '';
-	protected $_limit = '';
-	protected $_where = array();
-	protected $_stringWhere = '';
+	protected $_orderBy      = '';
+	protected $_sortOrder    = '';
+	protected $_groupBy      = '';
+	protected $_limit        = '';
+	protected $_where        = array();
+	protected $_stringWhere  = '';
 	protected $_selectFields = '*';
-	protected $_tbl = '';
+	protected $_tbl          = '';
 	protected $_lastGetCount = 0;
-	protected $_idField = 'id';
+	protected $_idField      = 'id';
 
-	/*public function init() {
-
-	}
-	public function get($d = array()) {
-
-	}
-	public function put($d = array()) {
-
-	}
-	public function post($d = array()) {
-
-	}
-	public function delete($d = array()) {
-
-	}
-	public function store($d = array()) {
-
-	}*/
 	public function setCode($code) {
 		$this->_code = $code;
 	}
+
 	public function getCode() {
 		return $this->_code;
 	}
+
 	public function getModule() {
 		return framePtw::_()->getModule( $this->_code );
 	}
@@ -55,13 +39,16 @@ abstract class modelPtw extends baseObjectPtw {
 	protected function _setTbl($tbl) {
 		$this->_tbl = $tbl;
 	}
+
 	protected function _setIdField($field) {
 		$this->_idField = $field;
 	}
+
 	public function setOrderBy($orderBy) {
 		$this->_orderBy = $orderBy;
 		return $this;
 	}
+
 	/**
 	 * ASC, DESC
 	 */
@@ -69,14 +56,17 @@ abstract class modelPtw extends baseObjectPtw {
 		$this->_sortOrder = $sortOrder;
 		return $this;
 	}
+
 	public function setLimit($limit) {
 		$this->_limit = $limit;
 		return $this;
 	}
+
 	public function setWhere($where) {
 		$this->_where = $where;
 		return $this;
 	}
+
 	public function addWhere($where) {
 		if(empty($this->_where) && !is_string($where)) {
 			$this->setWhere( $where );
@@ -92,17 +82,21 @@ abstract class modelPtw extends baseObjectPtw {
 		}
 		return $this;
 	}
+
 	public function setSelectFields($selectFields) {
 		$this->_selectFields = $selectFields;
 		return $this;
 	}
+
 	public function groupBy($groupBy) {
 		$this->_groupBy = $groupBy;
 		return $this;
 	}
+
 	public function getLastGetCount() {
 		return $this->_lastGetCount;
 	}
+
 	protected function _retrieveData($params = array()) {
 		$tbl = isset($params['tbl']) ? $params['tbl'] : $this->_tbl;
 		$table = framePtw::_()->getTable( $tbl );
@@ -110,6 +104,7 @@ abstract class modelPtw extends baseObjectPtw {
 		$return = isset($params['return']) ? $params['return'] : 'all';
 		return $table->get($this->_selectFields, $this->_where, '', $return);
 	}
+
 	public function getFromTbl($params = array()) {
 		$this->_lastGetCount = 0;
 		$data = $this->_retrieveData( $params );
@@ -134,6 +129,7 @@ abstract class modelPtw extends baseObjectPtw {
 		$this->_clearQuery( $params );
 		return $data;
 	}
+
 	protected function _clearQuery($params = array()) {
 		$clear = isset($params['clear']) ? $params['clear'] : array();
 		if(!is_array($clear))
@@ -151,6 +147,7 @@ abstract class modelPtw extends baseObjectPtw {
 		if(empty($clear) || in_array('groupBy', $clear))
 			$this->_groupBy = '';
 	}
+
 	public function getCount($params = array()) {
 		$tbl = isset($params['tbl']) ? $params['tbl'] : $this->_tbl;
 		$table = framePtw::_()->getTable( $tbl );
@@ -160,9 +157,11 @@ abstract class modelPtw extends baseObjectPtw {
 		$this->_clearQuery($params);
 		return $data;
 	}
+
 	protected function _afterGetFromTbl( $row ) {	// You can re-define this method in your own model
 		return $row;
 	}
+
 	protected function _buildQuery($table = null) {
 		if(!$table)
 			$table = framePtw::_()->getTable( $this->_tbl );
@@ -210,9 +209,11 @@ abstract class modelPtw extends baseObjectPtw {
 			$this->pushError(__('Invalid ID', PTW_LANG_CODE));
 		return false;
 	}
+
 	public function clear() {
-		return $this->delete();	// Just delete all
+		return $this->delete(); // Just delete all
 	}
+
 	public function delete($params = array()) {
 		if(framePtw::_()->getTable( $this->_tbl )->delete( $params )) {
 			return true;
@@ -220,10 +221,12 @@ abstract class modelPtw extends baseObjectPtw {
 			$this->pushError (__('Database error detected', PTW_LANG_CODE));
 		return false;
 	}
+
 	public function getById($id) {
 		$data = $this->setWhere(array($this->_idField => $id))->getFromTbl();
 		return empty($data) ? false : array_shift($data);
 	}
+
 	public function insert($data) {
 		$data = $this->_dataSave($data, false);
 		$id = framePtw::_()->getTable( $this->_tbl )->insert( $data );
@@ -233,6 +236,7 @@ abstract class modelPtw extends baseObjectPtw {
 		$this->pushError(framePtw::_()->getTable( $this->_tbl )->getErrors());
 		return false;
 	}
+
 	public function updateById($data, $id = 0) {
 		if(!$id) {
 			$id = isset($data[ $this->_idField ]) ? (int) $data[ $this->_idField ] : 0;
@@ -243,6 +247,7 @@ abstract class modelPtw extends baseObjectPtw {
 			$this->pushError(__('Empty or invalid ID', PTW_LANG_CODE));
 		return false;
 	}
+
 	public function update($data, $where) {
 		$data = $this->_dataSave($data, true);
 		if(framePtw::_()->getTable( $this->_tbl )->update( $data, $where )) {
@@ -251,17 +256,21 @@ abstract class modelPtw extends baseObjectPtw {
 		$this->pushError(framePtw::_()->getTable( $this->_tbl )->getErrors());
 		return false;
 	}
+
 	protected function _dataSave($data, $update = false) {
 		return $data;
 	}
+
 	public function getTbl() {
 		return $this->_tbl;
 	}
+
 	public function exists($value, $field = '') {
 		return framePtw::_()->getTable( $this->_tbl )->exists( $value, $field );
 	}
+
 	/**
-	 * We can re-define this method to not retrive all data - for simple tables
+	 * We can re-define this method to not retrieve all data - for simple tables
 	 */
 	public function setSimpleGetFields() {
 		return $this;
