@@ -3,11 +3,11 @@
  * Plugin Name: Product Pricing Tables
  * Plugin URI: https://woobewoo.com/plugins/woocommerce-pricing-table/
  * Description: Product Pricing Tables
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: woobewoo
  * Author URI: https://woobewoo.com/
  * WC requires at least: 3.4.0
- * WC tested up to: 10.5
+ * WC tested up to: 11.3
  * Text Domain: woo-product-pricing-tables
  * Domain Path: /languages
  **/

@@ -3,8 +3,8 @@ Contributors: woobewoo
 Donate link: https://woobewoo.com/plugins/woocommerce-pricing-table/
 Tags: woocommerce, woo, product, wooproduct, price table, pricing table, shop, price, pricing, table, comparison table, css table, comparison, price gird, pricing gird, pricing box, price chart, price plan, chart, plan
 Requires at least: 3.3
-Tested up to: 6.6
-Stable tag: 1.1.1
+Tested up to: 7.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,10 @@ We are always ready to collaborate with our users to widen the auditory! Please,
 5. [Pricing Table examples](https://woobewoo.com/plugins/woocommerce-pricing-table/)
 
 == Changelog ==
+
+= 1.1.2 - 23/11/2026 =
+* WC tested up to: 11.3.
+* Tested up to: 7.1.
 
 = 1.1.1 - 11/03/2026 =
 * Fix - Security - Delete selected - Nonce verification added.
